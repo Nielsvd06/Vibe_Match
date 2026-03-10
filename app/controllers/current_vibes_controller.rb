@@ -5,6 +5,6 @@ class CurrentVibesController < ApplicationController
   def show
   end
 
-  def edit
+  def update
   end
 end

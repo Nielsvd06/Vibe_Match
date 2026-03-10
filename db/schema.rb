@@ -33,7 +33,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_10_162519) do
     t.datetime "updated_at", null: false
     t.index ["current_vibe_id"], name: "index_messages_on_current_vibe_id"
   end
-  
+
   create_table "recommendations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "current_vibe_id"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "messages/create"
   get "current_vibes/index"
   devise_for :users
   root to: "pages#home"
