@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_10_152030) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_10_162204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,6 +23,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_10_152030) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_current_vibes_on_user_id"
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "current_vibe_id"
+    t.string "description"
+    t.integer "r_rating"
+    t.string "r_reasoning"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.integer "year"
+    t.index ["current_vibe_id"], name: "index_recommendations_on_current_vibe_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +55,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_10_152030) do
   end
 
   add_foreign_key "current_vibes", "users"
+  add_foreign_key "recommendations", "current_vibes"
 end
