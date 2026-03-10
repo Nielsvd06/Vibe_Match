@@ -1,0 +1,3 @@
+class CurrentVibe < ApplicationRecord
+
+end
