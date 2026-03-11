@@ -4,17 +4,17 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.role = "user"
     @current_vibe = @message.current_vibe
-    if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create(role: "assistant", content: response.content, current_vibes: @current_vibes)
+      if @message.save
+        ruby_llm_chat = RubyLLM.chat
+        response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+        Message.create(role: "assistant", content: response.content, current_vibes: @current_vibes)
 
-      @current_vibes.generate_title_from_first_message
+        @current_vibes.generate_title_from_first_message
 
-      redirect_to current_vibes_path(@current_vibes)
-    else
-      render "current_vibes/show", status: :unprocessable_entity
-    end
+        redirect_to current_vibes_path(@current_vibes)
+      else
+        render "current_vibes/show", status: :unprocessable_entity
+      end
   end
 end
 
@@ -26,10 +26,11 @@ end
 # 2 - create new Message passing the content from message_params
 # 3 - assign role of message as ‘user’
 # 4 - assign current_vibe instance to message.current_vibe
-
 # 5 - if message.save statement
+
 # 6 - if the message saves, we trigger an update of the current_vibe (add to class code) based off the users message. eg current_vibe.update(duration: message.content)
 # 7 - also if the messages saves need to generate the next AI question (ie generate next assistant role message) (edited)
+
 
 # current_vibe create action
 # 1 - generate a blank current_vibe with titled as ‘untitled’ for example
