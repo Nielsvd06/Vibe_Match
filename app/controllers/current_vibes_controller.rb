@@ -1,6 +1,6 @@
 class CurrentVibesController < ApplicationController
   def create
-    @current_vibe = current_vibe.new(title: Current_Vibe::DEFAULT_TITLE)
+    @current_vibe = CurrentVibe.new()
     @current_vibe.user = current_user
 
     if @current_vibe.save
@@ -19,11 +19,17 @@ class CurrentVibesController < ApplicationController
   end
 
   def show
-    @chat    = current_user.chats.find(params[:id])
+    @current_vibe = current_user.current_vibes.find(params[:id])
     @message = Message.new
   end
 
   def update
+  end
+
+  private
+
+  def instructions
+    "you are an AI assitant, i am a user about to share some info about my mood, energy and time available, answer with a message where you ask me about those 3"
   end
 end
 

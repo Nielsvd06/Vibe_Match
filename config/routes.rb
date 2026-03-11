@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :current_vibes, only: [:create, :show, :update] do
-  #   resources :messages, only: [:create]
+    resources :messages, only: [:create]
   #   resources :recommendations, only: [:create, :index, :show]
   end
 
