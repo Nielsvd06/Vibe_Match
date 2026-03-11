@@ -1,10 +1,43 @@
 class CurrentVibesController < ApplicationController
-  def index
+  def create
+    @current_vibe = CurrentVibe.new()
+    @current_vibe.user = current_user
+
+    if @current_vibe.save
+      # add LLM request passing through a system prompt to generate the first assistant message
+      # call LLM to ask  intro questions
+      ruby_llm_chat = RubyLLM.chat
+      response = ruby_llm_chat.with_instructions(instructions).ask("Ask the user for their time availaible, energy level, current mood and desired mood")
+
+      Message.create(role: "assistant", content: response.content, current_vibe: @current_vibe)
+
+      redirect_to current_vibe_path(@current_vibe)
+    else
+      @current_vibes = @challenge.current_vibes.where(user: current_user)
+      render "challenges/show"
+    end
   end
 
   def show
+    @current_vibe = current_user.current_vibes.find(params[:id])
+    @message = Message.new
   end
 
   def update
   end
+
+  private
+
+  def instructions
+    "you are an AI assitant, i am a user about to share some info about my mood, energy and time available, answer with a message where you ask me about those 3"
+  end
 end
+
+# current_vibe create action
+# 1 - generate a blank current_vibe with titled as ‘untitled’ for example
+# 2 - if @current_vibe.save statement
+# 3 - make an LLM request passing through a system prompt to generate the first assistant message on the page.
+#   (eg - let’s get started, in order to tailor your ideas we need to ask you some questions, firstly how much time do you have available?) and make a message in the back end ie: Message.create(content: response.content, role: ‘assistant’, current_vibe: @current_vibe)
+# 4 - redirect to current_vibe show page
+
+# add break to if loop for when user types/ triggers "create recommendation"
