@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :current_vibes, only: [:create, :show, :update] do
     resources :messages, only: [:create]
-  #   resources :recommendations, only: [:create, :index, :show]
+    resources :recommendations, only: [:create, :index]
   end
 
-  # resources :recommendations, only: [:show]
+  resources :recommendations, only: [:show]
 end
