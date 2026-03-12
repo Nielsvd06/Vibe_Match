@@ -1,4 +1,18 @@
-<h1>Check you current vibe</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<%= button_to "current vibe chat", current_vibes_path %>
- <%# current_vibes POST   /current_vibes(.:format) current_vibes#create %>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+
+      <!-- Big title -->
+      <h1 class="display-4 fw-bold mb-4" style="color: #0F2A5E;">
+        Check your current vibe
+      </h1>
+
+      <!-- Big yellow button -->
+      <%= button_to "Let's start our chat →",
+                    current_vibes_path,
+                    class: "btn btn-warning btn-lg px-5 py-3 fw-bold fs-3 shadow-sm",
+                    method: :post %>
+
+    </div>
+  </div>
+</div>
