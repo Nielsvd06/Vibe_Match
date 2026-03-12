@@ -52,5 +52,6 @@ TEXT
 # 4 - assign current_vibe instance to message.current_vibe
 # 5 - if message.save statement
 
+
 # 6 - if the message saves, we trigger an update of the current_vibe (add to class code) based off the users message. eg current_vibe.update(duration: message.content)
 # 7 - also if the messages saves need to generate the next AI question (ie generate next assistant role message) (edited)
