@@ -42,4 +42,21 @@
     <% end %>
   </div>
 
+<%#= link_to "← Go back", current_vibe_path(@current_vibe) %>
+
+<h1 id="current_vibe_title">Tell me more about it</h1>
+
+<% @current_vibe.messages.each do |message| %>
+  <p>
+    <strong><%= message.role %></strong>
+    <%#= raw(render_markdown(message.content)) %>
+    <%= message.content %>
+  </p>
+<% end %>
+
+<div id="new_message_container">
+  <%= simple_form_for [@current_vibe, @message] do |f| %>
+    <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started with the challenge?" %>
+    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+  <% end %>
 </div>

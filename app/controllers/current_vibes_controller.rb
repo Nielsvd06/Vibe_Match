@@ -25,6 +25,12 @@ class CurrentVibesController < ApplicationController
 
   def update
   end
+
+  private
+
+  def instructions
+    "you are an AI assitant, i am a user about to share some info about my mood, energy and time available, answer with a message where you ask me about those 3"
+  end
 end
 
 private
