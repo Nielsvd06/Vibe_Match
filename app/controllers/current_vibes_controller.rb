@@ -1,6 +1,6 @@
 class CurrentVibesController < ApplicationController
   def create
-    @current_vibe = current_vibe.new(title: Current_Vibe::DEFAULT_TITLE)
+    @current_vibe = CurrentVibe.new()
     @current_vibe.user = current_user
 
     if @current_vibe.save
@@ -19,13 +19,19 @@ class CurrentVibesController < ApplicationController
   end
 
   def show
-    @chat    = current_user.chats.find(params[:id])
+    @current_vibe = current_user.current_vibes.find(params[:id])
     @message = Message.new
   end
 
   def update
   end
 end
+
+private
+
+  def instructions
+    # [SYSTEM_PROMPT, challenge_context, @challenge.system_prompt].compact.join("\n\n")
+  end
 
 # current_vibe create action
 # 1 - generate a blank current_vibe with titled as ‘untitled’ for example
