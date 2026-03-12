@@ -53,6 +53,12 @@ class CurrentVibesController < ApplicationController
   # end
 end
 
+private
+
+  def instructions
+    # [SYSTEM_PROMPT, challenge_context, @challenge.system_prompt].compact.join("\n\n")
+  end
+
 # current_vibe create action
 # 1 - generate a blank current_vibe with titled as ‘untitled’ for example
 # 2 - if @current_vibe.save statement
