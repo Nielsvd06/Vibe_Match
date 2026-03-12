@@ -16,3 +16,5 @@
     <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
   <% end %>
 </div>
+
+<%= button_to "Create a recommendation", current_vibe_recommendations_path(@current_vibe), method: :post %>

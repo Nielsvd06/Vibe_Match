@@ -37,11 +37,13 @@ Your task is to help guide the users in their decision to choose a movie and/or 
 The output expected is an exchange of messages until all 4 questions are asked to make your recommendation.
 TEXT
 
+# 
+
 # Remember that a good prompt should include:
 # Persona: Who should the AI act as?
 # Context: What the output will be used for and by whom (i.e. the user), and any relevant data to pass along the user input.
 # Task: usually defined by the user, but it should be clear, direct and specific.
-# Format: How the output should be structured (e.g. JSON, Markdown, etc.).
+# Format: Provide me the five movies as json with imdb rating How the output should be structured (e.g. JSON, Markdown, etc.).
 
 
 # Messages create action
