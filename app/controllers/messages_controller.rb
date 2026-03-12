@@ -76,11 +76,13 @@ class MessagesController < ApplicationController
   end
 end
 
+# 
+
 # Remember that a good prompt should include:
 # Persona: Who should the AI act as?
 # Context: What the output will be used for and by whom (i.e. the user), and any relevant data to pass along the user input.
 # Task: usually defined by the user, but it should be clear, direct and specific.
-# Format: How the output should be structured (e.g. JSON, Markdown, etc.).
+# Format: Provide me the five movies as json with imdb rating How the output should be structured (e.g. JSON, Markdown, etc.).
 
 # Messages create action
 # check class notes here: https://github.com/lewagon/rails-ai-challenges/blob/before-conversational-ux/app/controllers/messages_controller.rb
