@@ -1,3 +1,46 @@
-<h1>Recommendations#show</h1>
-<p>Find me in app/views/recommendations/show.html.erb</p>
-<%= @recommendation.r_reasoning %>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <h1 class="display-4 fw-bold text-center mb-5" style="color: rgb(243, 196, 89);">
+        Your Movie Recommendation
+      </h1>
+
+      <div class="card shadow-lg" style="background-color: #1E3A6B; border-color: rgb(216, 106, 54);">
+        <div class="card-body p-5">
+
+          <h2 class="fw-bold mb-3" style="color: rgb(243, 196, 89);">
+            <%= @recommendation.title %>
+          </h2>
+
+          <p class="text-muted mb-4">
+            <%= @recommendation.year %> • Rating: <%= @recommendation.r_rating %>
+          </p>
+
+          <p class="lead mb-5" style="color: #FFF7E6;">
+            <%= @recommendation.description %>
+          </p>
+
+          <!-- AI Reasoning box -->
+          <div class="p-4 rounded-3" style="background-color: rgb(16, 32, 56); border-left: 5px solid rgb(216, 106, 54);">
+            <h5 class="fw-bold mb-3" style="color: rgb(243, 196, 89);">Why this matches your vibe:</h5>
+            <p style="color: #FFF7E6;">
+              <%= @recommendation.r_reasoning %>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="card-footer bg-transparent border-0 p-4 d-flex gap-3">
+          <%= link_to "Save to my list ❤️", "#", class: "btn flex-grow-1", style: "background-color: rgb(243, 196, 89); color: rgb(8, 18, 35);" %>
+
+          <!-- BUTTON -->
+          <%= button_to "New Chat", current_vibes_path,
+                        method: :post,
+                        class: "btn flex-grow-1 fw-bold",
+                        style: "background-color: #1E3A6B; color: white; border: 2px solid rgb(216, 106, 54);" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,45 @@
 @import "bootstrap";
 @import "font-awesome";
 
-// Your CSS partials
+// CSS partials
 @import "components/index";
 @import "pages/index";
 
+body {
+  background-color: rgb(16, 32, 56) !important;
+  color: #FFF7E6;
+}
+
+/* Cards */
+.card {
+  background-color: #1E3A6B;
+  border-color: rgb(216, 106, 54);
+  color: #FFF7E6;
+}
+
+/* BUTTONS - matching logo with nice hover effect */
+.btn {
+  background: linear-gradient(135deg, rgb(243, 196, 89), rgb(230, 170, 60)) !important;
+  color: rgb(8, 18, 35) !important;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(243, 196, 89, 0.4);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(216, 106, 54, 0.5);
+  background: linear-gradient(135deg, rgb(243, 196, 89), rgb(216, 106, 54)) !important;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Chat message box */
 .message-form-control {
   position: relative;
 }
@@ -23,11 +58,21 @@
 }
 .message-form-control .form-control {
   height: 3.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  border: 1px solid #E7E7E7;
+  border-radius: 50px;
+  background-color: #2A4A7E;
+  color: white;
   padding-right: 80px;
 }
 .message-form-control .form-control:focus {
-  border: 1px solid #1EDD88;
-  outline: none !important;
+  border: 2px solid rgb(243, 196, 89);
+  outline: none;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: rgb(243, 196, 89);
+}
+
+.text-muted {
+  color: #CCC !important;
 }
