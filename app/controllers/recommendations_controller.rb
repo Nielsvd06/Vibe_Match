@@ -7,6 +7,10 @@ class RecommendationsController < ApplicationController
     chat = RubyLLM.chat(model: "gpt-4o")
     @current_vibes = CurrentVibe.find(params[:current_vibe_id])
 
+    @current_vibes.messages.order(:created_at).each do |message|
+      chat.add_message(message)
+    end
+
     movie_schema = {
       type: 'object',
       properties: {
@@ -19,7 +23,7 @@ class RecommendationsController < ApplicationController
       required: ['title', 'year', 'description'],
       additionalProperties: false  # Required for OpenAI structured output
     }
-    response = chat.ask("Generate recommendation of 3 movies based upon the #{@current_vibes}.")
+    response = chat.ask("Based on our discussion recommend 3 movies, please.")
 
     # response = ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
     Message.create(role: "assistant", content: response.content)

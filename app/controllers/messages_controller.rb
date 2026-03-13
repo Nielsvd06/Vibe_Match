@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
 
       # @current_vibe.generate_title_from_first_message
 
-      redirect_to current_vibes_path(@current_vibe)
+      redirect_to current_vibe_path(@current_vibe)
     else
       render "current_vibes/show", status: :unprocessable_entity
     end
