@@ -1,2 +1,16 @@
-<h1>Recommendations#index</h1>
-<p>Find me in app/views/recommendations/index.html.erb</p>
+<div class="container py-5">
+  <h1 class="display-4 fw-bold text-center mb-5" style="color: rgb(243, 196, 89);">Your Recommendations</h1>
+
+  <div class="row g-4">
+    <% @recommendations.each do |rec| %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow" style="background-color: #1E3A6B; border-color: rgb(216, 106, 54);">
+          <div class="card-body">
+            <h5 class="fw-bold" style="color: rgb(243, 196, 89);"><%= rec.title %></h5>
+            <p class="text-muted"><%= rec.year %> • <%= rec.r_rating %></p>
+            <p style="color: #FFF7E6;"><%= rec.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>

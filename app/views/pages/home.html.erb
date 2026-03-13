@@ -1,18 +1,29 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-8 text-center">
+<div class="container py-5 text-center" style="background-color: rgb(16, 32, 56); min-height: 100vh;">
 
-      <!-- Big title -->
-      <h1 class="display-4 fw-bold mb-4" style="color: #0F2A5E;">
-        Check your current vibe
-      </h1>
-
-      <!-- Big yellow button -->
-      <%= button_to "Let's start our chat →",
-                    current_vibes_path,
-                    class: "btn btn-warning btn-lg px-5 py-3 fw-bold fs-3 shadow-sm",
-                    method: :post %>
-
-    </div>
+  <!-- BIG LOGO AT THE TOP -->
+  <div class="mb-5">
+    <%= image_tag "match-vibe-logo.png", height: "110", class: "mx-auto" %>
   </div>
+
+  <!-- headline -->
+  <h1 class="display-3 fw-bold mb-3" style="color: rgb(243, 196, 89);">
+    What's your vibe tonight?
+  </h1>
+
+  <p class="lead mb-5 text-light" style="max-width: 600px; margin: 0 auto;">
+    Tell the AI how you're feeling right now —<br>
+    mood, energy, time available — and get perfect movie picks.
+  </p>
+
+  <!-- Big yellow button -->
+  <%= button_to "Let' go!",
+                current_vibes_path,
+                method: :post,
+                class: "btn btn-lg px-5 py-3 fw-bold fs-3 shadow-sm",
+                style: "background-color: rgb(243, 196, 89); color: rgb(8, 18, 35);" %>
+
+  <p class="text-muted mt-4 small">
+    Takes 30 seconds • 3 quick questions
+  </p>
+
 </div>
