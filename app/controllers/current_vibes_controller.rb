@@ -5,8 +5,8 @@ class CurrentVibesController < ApplicationController
 
     if @current_vibe.save
       # add LLM request passing through a system prompt to generate the first assistant message
-      # call LLM to ask  intro questions
-      ruby_llm_chat = RubyLLM.chat
+      # call LLM to ask  intro que(stions
+      ruby_llm_chat = RubyLLM.chat(model: "gpt-4o")
       response = ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask("The user just opened the app. Start the conversation with a brief question.")
       Message.create(role: "assistant", content: response.content, current_vibe: @current_vibe)
 

@@ -5,9 +5,8 @@ class MessagesController < ApplicationController
     @message.role = "user"
     @message.current_vibe = @current_vibe
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat
+      @ruby_llm_chat = RubyLLM.chat(model: "gpt-4o")
       build_conversation_history
-
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
 
       Message.create(
@@ -18,6 +17,7 @@ class MessagesController < ApplicationController
 
       # @current_vibe.generate_title_from_first_message
 
+      # this route is wrong, should redirect to current_vibe_path(:id)
       redirect_to current_vibe_path(@current_vibe)
     else
       render "current_vibes/show", status: :unprocessable_entity
