@@ -4,24 +4,26 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.role = "user"
     @message.current_vibe = @current_vibe
-    if @message.save
-      @ruby_llm_chat = RubyLLM.chat(model: "gpt-4o")
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+    @message.save!
 
-      Message.create(
-        role: "assistant",
-        content: response.content,
-        current_vibe: @current_vibe
-      )
+    # if @message.save
+    @ruby_llm_chat = RubyLLM.chat(model: "gpt-4o")
+    build_conversation_history(@ruby_llm_chat)
+    response = @ruby_llm_chat.with_instructions(instructions).complete
 
-      # @current_vibe.generate_title_from_first_message
+    Message.create!(
+      role: "assistant",
+      content: response.content,
+      current_vibe: @current_vibe
+    )
 
-      # this route is wrong, should redirect to current_vibe_path(:id)
-      redirect_to current_vibe_path(@current_vibe)
-    else
-      render "current_vibes/show", status: :unprocessable_entity
-    end
+    # @current_vibe.generate_title_from_first_message
+
+    # this route is wrong, should redirect to current_vibe_path(:id)
+    redirect_to current_vibe_path(@current_vibe)
+    # else
+    #   render "current_vibes/show", status: :unprocessable_entity
+    # end
   end
 
   private
@@ -32,24 +34,29 @@ class MessagesController < ApplicationController
 
   def instructions
     main_vibes =
-      "I am in my thirties,
-      I like all genres,
-      I go for ratings above 7/10 only,
-      language preference is english content."
+      "age: 32,
+      genres preferred: all genres,
+      ratings preferred: above 5/10 only,
+      language preferred: english"
     [
       SYSTEM_PROMPT,
       main_vibes
     ].compact.join("\n\n")
   end
 
-  def build_conversation_history
-    @current_vibe.messages.each do |message|
-      @ruby_llm_chat.add_message(message)
+  # def build_conversation_history
+  #   @current_vibe.messages.each do |message|
+  #     @ruby_llm_chat.add_message(message)
+  #   end
+  def build_conversation_history(chat)
+    @current_vibe.messages.order(:created_at).each do |message|
+      chat.add_message(
+        role: message.role,
+        content: message.content
+      )
     end
   end
 end
-
-#
 
 # Remember that a good prompt should include:
 # Persona: Who should the AI act as?
